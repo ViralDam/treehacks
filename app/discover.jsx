@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Home() {
+export default function Discover() {
   return (
     <View style={styles.container}>
       <Text style={{color: '#CFCCD6'}}>Discover</Text>

@@ -9,9 +9,11 @@ const HomeLayout = () => {
         >
             <Stack.Screen
                 name="index"
+                href="/"
             />
             <Stack.Screen
                 name="play"
+                href="play"
             />
         </Stack>
     );
