@@ -15,6 +15,10 @@ const HomeLayout = () => {
                 name="play"
                 href="play"
             />
+            <Stack.Screen
+                name="list"
+                href="list"
+            />
         </Stack>
     );
 }

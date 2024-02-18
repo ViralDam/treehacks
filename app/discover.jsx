@@ -3,6 +3,7 @@ import Constants from "expo-constants";
 import { COLORS } from '../src/utils/constants';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from "expo-image";
+import React from 'react';
 
 const chem = require('../assets/discover/ce.jpeg');
 const crypto = require('../assets/discover/cg.jpeg');
@@ -15,7 +16,7 @@ const quco = require('../assets/discover/qc.jpeg');
 const econ = require('../assets/discover/ec.jpeg');
 const robo = require('../assets/discover/rb.jpeg');
 
-export default function Discover() {
+const Discover = React.memo(() => {
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.headerText}>Discover</Text>
@@ -86,7 +87,7 @@ export default function Discover() {
       <View style={{ height: 60 }} />
     </ScrollView>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {
@@ -150,3 +151,5 @@ const styles = StyleSheet.create({
     bottom: 0
   }
 });
+
+export default Discover;
