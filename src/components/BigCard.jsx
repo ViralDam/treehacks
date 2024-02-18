@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { COLORS } from '../utils/constants';
 import { LinearGradient } from 'expo-linear-gradient';
-import { AntDesign } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 const BigCard = React.memo(({ imgUrl, name }) => {
 
@@ -16,8 +16,8 @@ const BigCard = React.memo(({ imgUrl, name }) => {
             >
                 <Image source={{ uri: imgUrl }} style={styles.img} contentFit='cover' />
                 <Text style={{ color: COLORS.BLACK, fontSize: 16, padding: 8, fontWeight: '600' }} numberOfLines={3}>{name}</Text>
-                <TouchableOpacity>
-                    <AntDesign style={{ paddingLeft: 100 }} name="playcircleo" size={35} color="black" />
+                <TouchableOpacity style={{ backgroundColor:COLORS.PERSIAN_BLUE, flexDirection:"row", alignContent:"center", alignItems:"center", padding: 8, width: 45, height: 45, borderTopRightRadius: 20}}>
+                    <Ionicons name="play" size={20} color={COLORS.FRENCH_GRAY} />
                 </TouchableOpacity>
             </LinearGradient>
         </View>
