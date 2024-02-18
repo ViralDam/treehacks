@@ -4,6 +4,7 @@ import { COLORS } from '../src/utils/constants';
 import { Ionicons } from '@expo/vector-icons';
 import { Image } from "expo-image";
 import React from 'react';
+import { router } from 'expo-router';
 
 const chem = require('../assets/discover/ce.jpeg');
 const crypto = require('../assets/discover/cg.jpeg');
@@ -22,63 +23,63 @@ const Discover = React.memo(() => {
       <Text style={styles.headerText}>Discover</Text>
       <View style={styles.inputContainer}>
         <Ionicons name="search" style={{ marginLeft: 4 }} size={22} color={COLORS.VISTERIA} />
-        <TextInput style={styles.input} placeholder='Papers, Topics, Ideas' placeholderTextColor={`${COLORS.VISTERIA}66`} returnKeyType="search" />
+        <TextInput style={styles.input} placeholder='Papers, Topics, Ideas' placeholderTextColor={`${COLORS.VISTERIA}66`} returnKeyType="search" onSubmitEditing={(e) => router.push({pathname: "/list", params: { headText: e.nativeEvent.text}})}/>
       </View>
       <View style={styles.row}>
-        <TouchableOpacity activeOpacity={0.4}  style={styles.card}>
+        <TouchableOpacity activeOpacity={0.4}  style={styles.card} onPress={() => router.push({pathname: "/list", params: { headText: "Chemistry"}})}>
           <Image source={chem} style={styles.image} />
           <View style={styles.tint}></View>
           <Text style={styles.cardText}>Chemistry</Text>
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.4}  style={styles.card}>
+        <TouchableOpacity activeOpacity={0.4}  style={styles.card} onPress={() => router.push({pathname: "/list", params: { headText: "Cryptography"}})}>
           <Image source={crypto} style={styles.image} />
           <View style={styles.tint}></View>
           <Text style={styles.cardText}>Cryptography</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.row}>
-        <TouchableOpacity activeOpacity={0.4}  style={styles.card}>
+        <TouchableOpacity activeOpacity={0.4}  style={styles.card} onPress={() => router.push({pathname: "/list", params: { headText: "Nuclear"}})}>
           <Image source={nucl} style={styles.image} />
           <View style={styles.tint}></View>
           <Text style={styles.cardText}>Nuclear</Text>
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.4}  style={styles.card}>
+        <TouchableOpacity activeOpacity={0.4}  style={styles.card} onPress={() => router.push({pathname: "/list", params: { headText: "Physics"}})}>
           <Image source={phys} style={styles.image} />
           <View style={styles.tint}></View>
           <Text style={styles.cardText}>Physics</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.row}>
-        <TouchableOpacity activeOpacity={0.4}  style={styles.card}>
+        <TouchableOpacity activeOpacity={0.4}  style={styles.card} onPress={() => router.push({pathname: "/list", params: { headText: "Quantum Biology"}})}>
           <Image source={qubi} style={styles.image} />
           <View style={styles.tint}></View>
           <Text style={styles.cardText}>Quantum Biology</Text>
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.4}  style={styles.card}>
-          <Image source={quco} style={styles.image} />
+        <TouchableOpacity activeOpacity={0.4}  style={styles.card} onPress={() => router.push({pathname: "/list", params: { headText: "Quantum Computing"}})}>
+          <Image source={quco} style={styles.image}/>
           <View style={styles.tint}></View>
           <Text style={styles.cardText}>Quantum Computing</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.row}>
-        <TouchableOpacity activeOpacity={0.4}  style={styles.card}>
+        <TouchableOpacity activeOpacity={0.4}  style={styles.card} onPress={() => router.push({pathname: "/list", params: { headText: "Electronics"}})}>
           <Image source={elec} style={styles.image} />
           <View style={styles.tint}></View>
           <Text style={styles.cardText}>Electronics</Text>
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.4}  style={styles.card}>
+        <TouchableOpacity activeOpacity={0.4}  style={styles.card} onPress={() => router.push({pathname: "/list", params: { headText: "Mathematics"}})}>
           <Image source={math} style={styles.image} />
           <View style={styles.tint}></View>
           <Text style={styles.cardText}>Mathemmatics</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.row}>
-        <TouchableOpacity activeOpacity={0.4}  style={styles.card}>
+        <TouchableOpacity activeOpacity={0.4}  style={styles.card} onPress={() => router.push({pathname: "/list", params: { headText: "Economics"}})}>
           <Image source={econ} style={styles.image} />
           <View style={styles.tint}></View>
           <Text style={styles.cardText}>Economics</Text>
         </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.4}  style={styles.card}>
+        <TouchableOpacity activeOpacity={0.4}  style={styles.card} onPress={() => router.push({pathname: "/list", params: { headText: "Robotics"}})}>
           <Image source={robo} style={styles.image} />
           <View style={styles.tint}></View>
           <Text style={styles.cardText}>Robotics</Text>

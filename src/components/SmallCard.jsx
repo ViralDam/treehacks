@@ -4,13 +4,14 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { COLORS } from '../utils/constants';
 import { Link } from 'expo-router';
 
-const SmallCard = React.memo(({ imgUrl, name }) => {
-
+const SmallCard = React.memo((props) => {
+    const { image_url, title } = props;
+    console.log(title);
     return (
-        <Link href="/play" asChild>
+        <Link href={{pathname: "/play", params: props}} asChild>
             <TouchableOpacity style={styles.container} activeOpacity={0.4}>
-                <Image source={{ uri: imgUrl }} style={styles.img} contentFit='cover' />
-                <Text style={{ color: COLORS.FRENCH_GRAY, fontSize: 12, paddingTop: 8, fontWeight: '600' }} numberOfLines={2}>{name}</Text>
+                <Image source={{ uri: image_url }} style={styles.img} contentFit='cover' />
+                <Text style={{ color: COLORS.FRENCH_GRAY, fontSize: 12, paddingTop: 8, fontWeight: '600' }} numberOfLines={2}>{title}</Text>
             </TouchableOpacity>
         </Link>
     );

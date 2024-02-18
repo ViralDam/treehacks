@@ -1,14 +1,30 @@
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from "react-native";
 import Constants from "expo-constants";
-import { useLocalSearchParams } from "expo-router";
 import { COLORS } from "../../src/utils/constants";
 import MediumCard from "../../src/components/MediumCard";
 import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
+import { useEffect, useState, useRef } from "react";
+import LottieView from 'lottie-react-native';
 
 const ListScreen = () => {
+    const animation = useRef(null);
+    const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const params = useLocalSearchParams();
     const { headText } = params;
+
+    useEffect(() => {
+        const getData = async () => {
+            const resp = await fetch(`http://10.19.191.222:8000/query/${headText}`)
+            const respJson = await resp.json()
+            setData(respJson)
+            setIsLoading(false)
+        }
+        setIsLoading(true);
+        getData();
+    }, []);
+
     return (
         <View style={styles.container}>
             <View style={{ width: "100%", height: 50, flexDirection: "row", alignItems: "center" }}>
@@ -17,15 +33,27 @@ const ListScreen = () => {
                     <Ionicons name="chevron-back" size={24} color={COLORS.FRENCH_GRAY} />
                 </TouchableOpacity>
             </View>
-            <FlatList
-                data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-                renderItem={
-                    ({ item }) => (<MediumCard />)
-                }
-                ItemSeparatorComponent={
-                    <View style={{ borderBottomColor: COLORS.FRENCH_GRAY, borderWidth: 0.5 }} />
-                }
-            />
+            {data && data.length > 0 && !isLoading ?
+                <FlatList
+                    data={data}
+                    renderItem={
+                        ({ item }) => (<MediumCard data_details={item} />)
+                    }
+                    ItemSeparatorComponent={
+                        <View style={{ borderBottomColor: COLORS.FRENCH_GRAY, borderWidth: 0.5 }} />
+                    }
+                /> : (<View style={styles.animationContainer}>
+                    <LottieView
+                        autoPlay
+                        ref={animation}
+                        style={{
+                            width: 200,
+                            height: 200,
+                            backgroundColor: COLORS.BLACK,
+                        }}
+                        source={require('../../assets/loading.json')}
+                    />
+                </View>)}
         </View>
     );
 }
@@ -43,6 +71,12 @@ const styles = StyleSheet.create({
         paddingTop: 32,
         fontWeight: "bold",
         paddingBottom: 20,
+    },
+    animationContainer: {
+        backgroundColor: COLORS.BLACK,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
     },
 });
 

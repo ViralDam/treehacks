@@ -4,9 +4,10 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { COLORS } from '../utils/constants';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 
-const BigCard = React.memo(({ imgUrl, name }) => {
-
+const BigCard = React.memo((props) => {
+    const { image_url, title } = props;
     return (
         <View style={styles.container}>
             <LinearGradient
@@ -14,9 +15,9 @@ const BigCard = React.memo(({ imgUrl, name }) => {
                 colors={[COLORS.PERSIAN_BLUE, COLORS.FRENCH_GRAY]}
                 style={styles.background}
             >
-                <Image source={{ uri: imgUrl }} style={styles.img} contentFit='cover' />
-                <Text style={{ color: COLORS.BLACK, fontSize: 16, padding: 8, fontWeight: '600' }} numberOfLines={3}>{name}</Text>
-                <TouchableOpacity style={{ backgroundColor:COLORS.PERSIAN_BLUE, flexDirection:"row", alignContent:"center", alignItems:"center", padding: 8, width: 45, height: 45, borderTopRightRadius: 20}}>
+                <Image source={{ uri: image_url }} style={styles.img} contentFit='cover' />
+                <Text style={{ color: COLORS.BLACK, fontSize: 16, padding: 8, fontWeight: '600' }} numberOfLines={3}>{title}</Text>
+                <TouchableOpacity style={{ backgroundColor:COLORS.PERSIAN_BLUE, flexDirection:"row", alignContent:"center", alignItems:"center", padding: 8, width: 45, height: 45, borderTopRightRadius: 20, position: "absolute", bottom: 0}} onPress={() => router.push({pathname: "/play", params: props})}>
                     <Ionicons name="play" size={20} color={COLORS.FRENCH_GRAY} />
                 </TouchableOpacity>
             </LinearGradient>
